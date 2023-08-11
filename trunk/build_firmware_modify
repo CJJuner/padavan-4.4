@@ -33,8 +33,8 @@ echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> .config #simple-obfs混淆插件
 echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
 
 ##DNS服务##
-echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> .config #smartdns
-echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #adg DNS去AD
+echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> .config #smartdns
+echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config #adg DNS去AD
 
 
 ##内网穿透服务##
@@ -186,7 +186,7 @@ else
 	func_disable_kernel_param "CONFIG_WIREGUARD"
 fi
 # SQM QOS
-if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "y" ]; then
+if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "n" ]; then
 	func_enable_kernel_param "CONFIG_NF_CONNTRACK_EVENTS"
 	sed -i "/CONFIG_NF_CONNTRACK_EVENTS=y/a\CONFIG_NF_CONNTRACK_CHAIN_EVENTS=y" $kernel_tf
 	func_enable_kernel_param "CONFIG_NF_CONNTRACK_TIMEOUT"
