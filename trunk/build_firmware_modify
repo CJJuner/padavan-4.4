@@ -44,7 +44,7 @@ echo "CONFIG_FIRMWARE_INCLUDE_DDNSTO=y" >> .config #ddnsto  ~0.5M
 ##内网穿透服务##
 echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=n" >> .config  #ALDRIVER  ~3m
 echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #mentohust
-echo "CONFIG_FIRMWARE_INCLUDE_SQM=y" >> .config #SQM
+echo "CONFIG_FIRMWARE_INCLUDE_SQM=n" >> .config #SQM
 echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=y" >>.config #wireguard 10k
 echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #frpc
 echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #frps
@@ -186,7 +186,7 @@ else
 	func_disable_kernel_param "CONFIG_WIREGUARD"
 fi
 # SQM QOS
-if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "n" ]; then
+if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "y" ]; then
 	func_enable_kernel_param "CONFIG_NF_CONNTRACK_EVENTS"
 	sed -i "/CONFIG_NF_CONNTRACK_EVENTS=y/a\CONFIG_NF_CONNTRACK_CHAIN_EVENTS=y" $kernel_tf
 	func_enable_kernel_param "CONFIG_NF_CONNTRACK_TIMEOUT"
